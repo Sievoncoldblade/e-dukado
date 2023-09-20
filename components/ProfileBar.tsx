@@ -54,7 +54,7 @@ const ProfileBar = () => {
                 } hover:bg-green-300  dark:hover:bg-green-700 transition-all`}
               >
                 <Image className='rounded-full' width={35} height={35} src={Owen} alt='profile image' />
-                <p className='text-xl font-bold select-none hidden lg:inline'>{user.name}</p>
+                <p className='text-xl font-bold select-none hidden lg:inline'>{user?.name}</p>
                 <ArrowUp className={`${isDropDownActive ? "rotate-180" : "rotate-0"} transition-transform hidden lg:inline`} size={25} />
               </div>
               <div
@@ -64,7 +64,7 @@ const ProfileBar = () => {
               >
                 <ul className=''>
                   <li className='border-b border-grey-400 flex flex-col items-center cursor-pointe select-none px-2 py-2 rounded transition-all'>
-                    <span className='font-semibold text-lg'>{user.name}</span>
+                    <span className='font-semibold text-lg'>{user?.name}</span>
                     <span>Teacher</span>
                   </li>
                   <li

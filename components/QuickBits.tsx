@@ -2,6 +2,11 @@ import { ArrowRight, Clipboard, Folder, PenTool } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import Math from "@/public/subjects/math.jpg";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import { Line } from "react-chartjs-2";
+import { faker } from "@faker-js/faker";
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const QuickBits = () => {
   return (
@@ -97,8 +102,50 @@ const QuickBits = () => {
           </div>
         </div>
       </div>
+      <div>
+        <Line options={options} data={data} />
+      </div>
     </div>
   );
+};
+
+const labels = ["January", "February", "March", "April", "May", "June", "July"];
+
+export const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top" as const,
+    },
+    title: {
+      display: true,
+      text: "Grade 1 Maharlika Average Scores for Quarter 1",
+    },
+  },
+};
+
+export const data = {
+  labels,
+  datasets: [
+    {
+      label: "Mathematics",
+      data: labels.map(() => faker.number.int({ min: 85, max: 95 })),
+      borderColor: "rgb(255, 99, 132)",
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
+    },
+    {
+      label: "Science",
+      data: labels.map(() => faker.number.int({ min: 85, max: 95 })),
+      borderColor: "rgb(53, 162, 235)",
+      backgroundColor: "rgba(53, 162, 235, 0.5)",
+    },
+    {
+      label: "English",
+      data: labels.map(() => faker.number.int({ min: 85, max: 95 })),
+      borderColor: "rgb(134, 255, 172)",
+      backgroundColor: "rgb(134, 255, 172)",
+    },
+  ],
 };
 
 export default QuickBits;

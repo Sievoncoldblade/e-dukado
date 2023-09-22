@@ -22,8 +22,8 @@ export default function Home() {
         <SignInButtons />
       </nav>
       <div>
-        <div className='absolute top-48 left-0 md:left-24 flex flex-col overflow-hidden px-4'>
-          <h1 className='text-3xl md:text-[5rem]  font-extrabold text-yellow-500'>e-Dukado LMS</h1>
+        <div className='absolute top-48 left-0 md:left-24 flex flex-col px-4'>
+          <h1 className='text-3xl md:text-[5rem] mb-4 font-extrabold text-yellow-500'>e-Dukado LMS</h1>
           <div className='text-green-500 text-md md:text-2xl'>
             <p>A Learning Management System developed for</p>
             <p>Santa Rosa Elementary School Central I</p>

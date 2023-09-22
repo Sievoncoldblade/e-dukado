@@ -3,16 +3,16 @@ import Link from "next/link";
 import LandingImage from "@/assets/landing.jpg";
 import Logo from "@/assets/logo.svg";
 import SignInButtons from "@/components/SignInButtons";
-import CentralI from "@/public/subjects/landing_page_hd.png";
+import CentralI from "@/public/landing_page_transparent.png";
 import SignInButton from "@/components/SignInButton";
 export default function Home() {
   return (
-    <div>
-      <nav className='w-screen absolute top-0 h-fit flex items-center justify-between p-4'>
+    <div className=''>
+      <nav className='w-screen absolute top-0 gap-4 h-fit flex items-center justify-between p-4'>
         <div className='object-contain w-36 '>
           <Logo className='fill-green-600' alt='logo' />
         </div>
-        <div className='flex gap-4 text-green-900'>
+        <div className='hidden md:flex gap-4 text-green-900 dark:text-green-300'>
           <Link className='font-semibold' href='/'>
             Home
           </Link>
@@ -22,9 +22,9 @@ export default function Home() {
         <SignInButtons />
       </nav>
       <div>
-        <div className='absolute top-48 left-24 flex flex-col'>
-          <h1 className='text-[5rem] font-extrabold text-yellow-500'>e-Dukado LMS</h1>
-          <div className='text-green-500 text-2xl'>
+        <div className='absolute top-48 left-0 md:left-24 flex flex-col overflow-hidden px-4'>
+          <h1 className='text-3xl md:text-[5rem]  font-extrabold text-yellow-500'>e-Dukado LMS</h1>
+          <div className='text-green-500 text-md md:text-2xl'>
             <p>A Learning Management System developed for</p>
             <p>Santa Rosa Elementary School Central I</p>
           </div>

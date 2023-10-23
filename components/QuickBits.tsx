@@ -122,6 +122,34 @@ export const options = {
       text: "Grade 1 Maharlika Average Scores for Quarter 1",
     },
   },
+  scales: {
+    xAxes: [
+      {
+        display: true,
+        gridLines: {
+          display: true,
+        },
+        scaleLabel: {
+          display: true,
+          labelString: "Month",
+          color: "#ffffff",
+        },
+      },
+    ],
+    yAxes: [
+      {
+        display: true,
+        gridLines: {
+          display: true,
+          color: "#ffffff",
+        },
+        scaleLabel: {
+          display: true,
+          labelString: "Value",
+        },
+      },
+    ],
+  },
 };
 
 export const data = {
@@ -142,8 +170,8 @@ export const data = {
     {
       label: "English",
       data: labels.map(() => faker.number.int({ min: 85, max: 95 })),
-      borderColor: "rgb(134, 255, 172)",
-      backgroundColor: "rgb(134, 255, 172)",
+      borderColor: "rgb(75, 192, 192)",
+      backgroundColor: "rgb(75, 192, 192)",
     },
   ],
 };

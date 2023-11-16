@@ -111,7 +111,7 @@ const QuickBits = () => {
 
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
 
-export const options = {
+export const options: any = {
   responsive: true,
   plugins: {
     legend: {

@@ -1,6 +1,6 @@
 "use client";
 import ProfileBar from "@/components/ProfileBar";
-import QuickBits from "@/components/QuickBits";
+import QuickBits from "@/components/QuickBits.1";
 import { useCollapseContext } from "@/components/provider/collapseProvider";
 import { useSession } from "next-auth/react";
 import React from "react";

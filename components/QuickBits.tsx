@@ -5,6 +5,8 @@ import Math from "@/public/subjects/math.jpg";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
+import Link from "next/link";
+import RecentSubjects from "./RecentSubjects";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -51,56 +53,10 @@ const QuickBits = () => {
         </div>
       </div>
       <div className='w-fit p-4 bg-green-300 text-green-900 dark:bg-green-600 dark:text-white rounded-md transition-colors flex flex-col gap-4'>
-        <button className='flex gap-2 font-bold'>
+        <Link href='/dashboard/subjects' className='flex gap-2 font-bold'>
           VIEW ALL SUBJECTS <ArrowRight />
-        </button>
-        <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2'>
-          <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
-            <div className='flex flex-col gap-4 items-start'>
-              <div className='flex flex-col'>
-                <p className='text-xl'>Mathematics</p>
-                <p className='text-sm'>Grade 1 Maharlika</p>
-              </div>
-              <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
-            </div>
-          </div>
-          <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
-            <div className='flex flex-col gap-4 items-start'>
-              <div className='flex flex-col'>
-                <p className='text-xl'>Filipino</p>
-                <p className='text-sm'>Grade 1 Maharlika</p>
-              </div>
-              <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
-            </div>
-          </div>
-          <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
-            <div className='flex flex-col gap-4 items-start'>
-              <div className='flex flex-col'>
-                <p className='text-xl'>Programming</p>
-                <p className='text-sm'>Grade 1 Maharlika</p>
-              </div>
-              <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
-            </div>
-          </div>
-          <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
-            <div className='flex flex-col gap-4 items-start'>
-              <div className='flex flex-col'>
-                <p className='text-xl'>Science</p>
-                <p className='text-sm'>Grade 1 Maharlika</p>
-              </div>
-              <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
-            </div>
-          </div>
-          <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
-            <div className='flex flex-col gap-4 items-start'>
-              <div className='flex flex-col'>
-                <p className='text-xl'>English</p>
-                <p className='text-sm'>Grade 1 Maharlika</p>
-              </div>
-              <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
-            </div>
-          </div>
-        </div>
+        </Link>
+        <RecentSubjects />
       </div>
       <div>
         <Line options={options} data={data} />

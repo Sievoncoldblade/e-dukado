@@ -2,19 +2,158 @@
 import React from "react";
 import ProfileBar from "@/components/ProfileBar";
 import { useCollapseContext } from "@/components/provider/collapseProvider";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const Subjects = () => {
   const [collapse, setCollapse] = useCollapseContext();
 
   return (
-    <div
-      className={`absolute top-0 left-[57px] w-[calc(100vw-57px)] lg:w-[calc(100vw-16rem)] ${
-        collapse ? "lg:left-[57px] w-[calc(100vw-57px)] lg:w-[calc(100vw-57px)]" : "lg:left-[16rem] w-[calc(100vw-16rem)]"
-      } flex -z-0 px-4 py-4 transition-all`}
-    >
+    <div>
       <ProfileBar />
-      <div className='mt-5'>
-        <div className='min-h-[7.5rem] flex items-center px-4 bg-green-500 text-white text-3xl font-bold rounded-lg '>mathematics</div>
+      <div className='flex flex-col gap-4 mt-8'>
+        <h1 className='text-lg md:text-3xl font-bold '>Grade Levels and Section</h1>
+        <div className='w-fit p-4 bg-green-300 text-green-900 dark:bg-green-600 dark:text-white rounded-md transition-colors flex flex-col gap-4'>
+          <Link href='/dashboard/subjects' className='flex gap-2 font-bold'>
+            GRADE 1 - MAHARLIKA
+          </Link>
+          <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2'>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Mathematics</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Filipino</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Programming</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Science</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>English</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='w-fit p-4 bg-green-300 text-green-900 dark:bg-green-600 dark:text-white rounded-md transition-colors flex flex-col gap-4'>
+          <Link href='/dashboard/subjects' className='flex gap-2 font-bold'>
+            GRADE 1 - MABULAKBOL
+          </Link>
+          <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2'>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Mathematics</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Filipino</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Programming</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Science</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>English</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className='w-fit p-4 bg-green-300 text-green-900 dark:bg-green-600 dark:text-white rounded-md transition-colors flex flex-col gap-4'>
+          <Link href='/dashboard/subjects' className='flex gap-2 font-bold'>
+            GRADE 1 - MABANTOT
+          </Link>
+          <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2'>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Mathematics</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Filipino</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Programming</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>Science</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+            <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>
+              <div className='flex flex-col gap-4 items-start'>
+                <div className='flex flex-col'>
+                  <p className='text-xl'>English</p>
+                </div>
+                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

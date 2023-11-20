@@ -23,9 +23,9 @@ const Sidebar = () => {
       </Link>
       <SidebarItem href='/dashboard' text='Dashboard' icon='layout-dashboard' />
       <SidebarItem href='/dashboard/subjects' text='Subjects' icon='folder' />
-      <SidebarItem href='/dashboard/exams' text='Examinations' icon='pen-tool' />
+      {/* <SidebarItem href='/dashboard/exams' text='Examinations' icon='pen-tool' />
       <SidebarItem href='/dashboard/lessons' text='Lessons' icon='sticky-note' />
-      <SidebarItem href='/dashboard/activities' text='Activities' icon='clipboard' />
+      <SidebarItem href='/dashboard/activities' text='Activities' icon='clipboard' /> */}
       <SidebarItem href='/dashboard/calendar' text='Calendar' icon='calendar' />
       <SidebarItem href='/dashboard/reports' text='Reports' icon='line-chart' />
       <SidebarItem href='/dashboard/settings' text='Settings' icon='settings' />

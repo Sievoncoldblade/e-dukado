@@ -1,5 +1,6 @@
 "use client";
 
+import ProfileBar from "@/components/ProfileBar";
 import Sidebar from "@/components/Sidebar";
 import { useCollapseContext } from "@/components/provider/collapseProvider";
 
@@ -14,7 +15,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           collapse ? "lg:left-[57px] w-[calc(100vw-57px)] lg:w-[calc(100vw-57px)]" : "lg:left-[16rem] w-[calc(100vw-16rem)]"
         } flex -z-0 px-4 py-4 transition-all`}
       >
-        {children}
+        <ProfileBar />
+        <div className='mt-12'>{children}</div>
       </div>
     </div>
   );

@@ -10,8 +10,7 @@ const Subjects = () => {
 
   return (
     <div>
-      <ProfileBar />
-      <div className='flex flex-col gap-4 mt-8'>
+      <div className='flex flex-col gap-4'>
         <h1 className='text-lg md:text-3xl font-bold '>Grade Levels and Section</h1>
         <div className='w-fit p-4 bg-green-300 text-green-900 dark:bg-green-600 dark:text-white rounded-md transition-colors flex flex-col gap-4'>
           <Link href='/dashboard/subjects' className='flex gap-2 font-bold'>
@@ -23,7 +22,9 @@ const Subjects = () => {
                 <div className='flex flex-col'>
                   <p className='text-xl'>Mathematics</p>
                 </div>
-                <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+                <Link href='/dashboard/subject-test'>
+                  <button className='rounded-xl px-4 py-2 bg-green-200 hover:bg-green-300 dark:bg-green-500 dark:hover:bg-green-400 font-semibold transition-colors'>View Subject</button>
+                </Link>
               </div>
             </div>
             <div className='max-w-fit select-none p-4 rounded-xl overflow-hidden shadow-lg bg-white dark:bg-green-200 text-green-900'>

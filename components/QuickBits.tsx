@@ -12,7 +12,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 
 const QuickBits = () => {
   return (
-    <div className='flex flex-col gap-3 mt-4'>
+    <div className='flex flex-col gap-3'>
       <h1 className='text-lg md:text-3xl font-bold '>What&apos;s for today?</h1>
       <div className='grid sm:grid-cols-2 md:grid-cols-3 gap-3'>
         <div className='w-auto p-4 select-none cursor-pointer bg-green-300 text-green-900 dark:bg-green-600 dark:text-white flex items-center justify-between gap-4 rounded-md transition-colors'>

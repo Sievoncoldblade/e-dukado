@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
-import ProfileBar from "@/components/ProfileBar";
 import { useCollapseContext } from "@/components/provider/collapseProvider";
-import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const Subjects = () => {

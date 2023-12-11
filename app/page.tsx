@@ -29,7 +29,7 @@ export default function Home() {
             <p>Santa Rosa Elementary School Central I</p>
           </div>
           <div className='mt-4'>
-            <SignInButton />
+            <SignInButton href='/student/register' text='Join now!' />
           </div>
         </div>
         <div className='absolute bottom-0 -z-10'>

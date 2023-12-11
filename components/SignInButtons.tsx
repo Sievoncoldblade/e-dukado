@@ -1,17 +1,13 @@
 "use client";
 
-import { signIn } from "next-auth/react";
 import React from "react";
+import SignInButton from "./SignInButton";
 
 const SignInButtons = () => {
   return (
     <div className='flex gap-4'>
-      <button className='p-2 bg-green-500 rounded-lg text-white' onClick={() => signIn()}>
-        Sign in as Teacher
-      </button>
-      <button className='p-2 bg-yellow-500 rounded-lg text-white' onClick={() => signIn()}>
-        Sign in as Student
-      </button>
+      <SignInButton href='/teacher/login' text='Sign in as Teacher' bgColor='bg-green-500' />
+      <SignInButton href='/student/login' text='Sign in as Student' bgColor='bg-yellow-500' />
     </div>
   );
 };

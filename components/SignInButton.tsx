@@ -1,14 +1,12 @@
-"use client";
-
-import { signIn } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 
-const SignInButtons = () => {
+const SignInButton = ({ text, bgColor, href }: { text: string; bgColor?: string; href: string }) => {
   return (
-    <button className='p-2 px-8 bg-green-500 rounded-lg text-white' onClick={() => signIn()}>
-      Join Now!
-    </button>
+    <Link href={href} className={`p-2 px-4 ${bgColor ? bgColor : "bg-green-500"} rounded-lg text-white`}>
+      {text}
+    </Link>
   );
 };
 
-export default SignInButtons;
+export default SignInButton;

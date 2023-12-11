@@ -12,6 +12,10 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<Inputs>();
 
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    if (errors) console.log(errors);
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='mx-auto mb-0 mt-8 max-w-md space-y-4'>
       <div>

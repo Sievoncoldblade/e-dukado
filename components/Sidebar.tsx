@@ -18,17 +18,17 @@ const Sidebar = () => {
     >
       <Menu className='absolute right-3 top-3 hover:cursor-pointer hidden lg:inline text-green-900' size={30} onClick={() => setCollapse(!collapse)} />
 
-      <Link href='/dashboard' className={`hidden ${collapse ? "lg:hidden" : "lg:block"}  mb-5`}>
+      <Link href='/teacher/dashboard' className={`hidden ${collapse ? "lg:hidden" : "lg:block"}  mb-5`}>
         <Logo className='fill-green-600' alt='logo' />
       </Link>
-      <SidebarItem href='/dashboard' text='Dashboard' icon='layout-dashboard' />
-      <SidebarItem href='/dashboard/subjects' text='Subjects' icon='folder' />
-      {/* <SidebarItem href='/dashboard/exams' text='Examinations' icon='pen-tool' />
-      <SidebarItem href='/dashboard/lessons' text='Lessons' icon='sticky-note' />
-      <SidebarItem href='/dashboard/activities' text='Activities' icon='clipboard' /> */}
-      <SidebarItem href='/dashboard/calendar' text='Calendar' icon='calendar' />
-      <SidebarItem href='/dashboard/reports' text='Reports' icon='line-chart' />
-      <SidebarItem href='/dashboard/settings' text='Settings' icon='settings' />
+      <SidebarItem href='/teacher/dashboard' text='Dashboard' icon='layout-dashboard' />
+      <SidebarItem href='/teacher/dashboard/subjects' text='Subjects' icon='folder' />
+      {/* <SidebarItem href='/teacher/dashboard/exams' text='Examinations' icon='pen-tool' />
+      <SidebarItem href='/teacher/dashboard/lessons' text='Lessons' icon='sticky-note' />
+      <SidebarItem href='/teacher/dashboard/activities' text='Activities' icon='clipboard' /> */}
+      <SidebarItem href='/teacher/dashboard/calendar' text='Calendar' icon='calendar' />
+      <SidebarItem href='/teacher/dashboard/reports' text='Reports' icon='line-chart' />
+      <SidebarItem href='/teacher/dashboard/settings' text='Settings' icon='settings' />
     </div>
   );
 };

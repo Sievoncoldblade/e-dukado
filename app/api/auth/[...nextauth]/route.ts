@@ -1,11 +1,15 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaClient } from "@prisma/client";
 
 export type User = {
   name: string;
   email: string;
   password: string;
 };
+
+const prisma = new PrismaClient();
 
 const authOptions: NextAuthOptions = {
   session: {
@@ -20,7 +24,6 @@ const authOptions: NextAuthOptions = {
       },
       authorize(credentials, req) {
         const { email, password } = credentials as { email: string; password: string };
-
         const users: User[] = [
           {
             email: "owenharvey@pup.edu.ph",
@@ -35,14 +38,12 @@ const authOptions: NextAuthOptions = {
         ];
         //perform logic for login
         const user = users.filter((user) => user.email == email)[0];
-
         if (user?.password == password) {
           const { password, ...userDetails } = user;
           return { id: "1", ...userDetails };
         } else {
           throw new Error("Invalid Credentials");
         }
-
         // find user from db
       },
     }),
@@ -50,6 +51,7 @@ const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
+  adapter: PrismaAdapter(prisma),
 };
 
 const handler = NextAuth(authOptions);

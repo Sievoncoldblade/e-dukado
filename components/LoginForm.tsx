@@ -21,7 +21,7 @@ const LoginForm = () => {
       email: data.email,
       password: data.password,
       redirect: true,
-      callbackUrl: "/dashboard",
+      callbackUrl: "/teacher/dashboard",
     });
 
     console.log(result);

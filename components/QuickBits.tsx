@@ -53,7 +53,7 @@ const QuickBits = () => {
         </div>
       </div>
       <div className='w-fit p-4 bg-green-300 text-green-900 dark:bg-green-600 dark:text-white rounded-md transition-colors flex flex-col gap-4'>
-        <Link href='/dashboard/subjects' className='flex gap-2 font-bold'>
+        <Link href='/teacher/dashboard/subjects' className='flex gap-2 font-bold'>
           VIEW ALL SUBJECTS <ArrowRight />
         </Link>
         <RecentSubjects />

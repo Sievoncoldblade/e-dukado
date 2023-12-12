@@ -1,70 +1,109 @@
 "use client";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
+import { ToastAction } from "./ui/toast";
+
 import Link from "next/link";
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { Inputs } from "./types/Inputs";
+import { signInWithEmailAndPassword } from "@/app/auth-server-actions";
+import { AuthResponse, AuthTokenResponse } from "@supabase/supabase-js";
+import { Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useTransition } from "react";
+import { redirect } from "next/navigation";
+
+const emailRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-+_!@#$%^&*.,?])/;
+
+const formSchema = z.object({
+  email: z.string({ required_error: "This field is required" }).email({ message: "Must be a valid email address" }).min(5, { message: "Minimum of 5 characters" }),
+
+  password: z
+    .string({ required_error: "This field is required" })
+    .min(8, { message: "Minimum of 8 characters" })
+    .refine((value) => /(?=.*[a-z])/.test(value), "At least one lower case letter should exist")
+    .refine((value) => /(?=.*[A-Z])/.test(value), "At least one upper case letter should exist")
+    .refine((value) => /(?=.*\d)/.test(value), "At least one digit should exist")
+    .refine((value) => /(?=.*[-+_!@#$%^&*.,?])/.test(value), "Need to have at least one special character"),
+});
 
 const LoginForm = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>();
+  const [isPending, startTransition] = useTransition();
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    if (errors) console.log(errors);
-  };
+  // Define your form.
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  // Define a submit handler.
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    startTransition(async () => {
+      // Do something with the form values.
+      const response = await signInWithEmailAndPassword(values);
+      const result: AuthTokenResponse = await JSON.parse(response);
+
+      if (result.error) {
+        toast({
+          title: "Error",
+          description: "Invalid email or password",
+          variant: "destructive",
+          action: <ToastAction altText='Try again'>Try again</ToastAction>,
+        });
+      } else {
+        redirect("/teacher/dashboard");
+      }
+    });
+  }
+
+  // Toast
+  const { toast } = useToast();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='mx-auto mb-0 mt-8 max-w-md space-y-4'>
-      <div>
-        <div className='relative'>
-          {errors.email && <span>This field is required</span>}
-
-          <input {...register("email", { required: true })} type='email' className='w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm border' placeholder='Enter email' />
-
-          <span className='absolute inset-y-0 end-0 grid place-content-center px-4'>
-            {/* <svg xmlns='http://www.w3.org/2000/svg' className='h-4 w-4 text-gray-400' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207' />
-            </svg> */}
-          </span>
-        </div>
-      </div>
-
-      <div>
-        <div className='relative'>
-          {errors.password && <span>This field is required</span>}
-
-          <input {...register("password", { required: true })} type='password' className='w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm border' placeholder='Enter password' />
-
-          <span className='absolute inset-y-0 end-0 grid place-content-center px-4'>
-            {/* <svg xmlns='http://www.w3.org/2000/svg' className='h-4 w-4 text-gray-400' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-              <path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M15 12a3 3 0 11-6 0 3 3 0 016 0z' />
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth='2'
-                d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'
-              />
-            </svg> */}
-          </span>
-        </div>
-      </div>
-
-      <div className='flex items-center justify-between'>
-        <p className='text-sm text-gray-500'>
-          No account?
-          <Link className='underline ml-1' href=''>
-            Sign up
-          </Link>
-        </p>
-
-        <button type='submit' className='inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white'>
-          Sign in
-        </button>
-      </div>
-    </form>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+        <FormField
+          control={form.control}
+          name='email'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='font-bold'>Email Address</FormLabel>
+              <FormControl>
+                <Input placeholder='Email Address' {...field} type='email' />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='password'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='font-bold'>Password</FormLabel>
+              <FormControl>
+                <Input placeholder='Password' {...field} type='password' />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type='submit' className='mr-4 bg-green-500 text-white'>
+          Submit
+          <Loader2 size={15} className={cn("ml-1 animate-spin", { hidden: !isPending })} />
+        </Button>
+        <Link className='text-sm text-gray-500' href='/teacher/register'>
+          Not yet registered?
+        </Link>
+      </form>
+    </Form>
   );
 };
 

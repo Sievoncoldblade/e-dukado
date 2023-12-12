@@ -6,12 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "update-types": "npx supabase gen types typescript --project-id \"veidivowzafpncwpqmsm\" > lib/database.types.ts"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.9",
     "@fullcalendar/daygrid": "^6.1.9",
     "@fullcalendar/react": "^6.1.9",
+    "@hookform/resolvers": "^3.3.2",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
+    "@supabase/auth-helpers-nextjs": "^0.8.7",
     "@supabase/ssr": "^0.0.10",
     "@supabase/supabase-js": "^2.39.0",
     "@types/node": "20.6.1",
@@ -20,6 +26,8 @@
     "@vercel/postgres": "^0.5.1",
     "autoprefixer": "10.4.15",
     "chart.js": "^4.4.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "lucide-react": "^0.277.0",
@@ -30,9 +38,12 @@
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.46.1",
+    "react-hook-form": "^7.49.0",
+    "tailwind-merge": "^2.1.0",
     "tailwindcss": "3.3.3",
-    "typescript": "5.2.2"
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "5.2.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.1.0",

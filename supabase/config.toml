@@ -67,9 +67,11 @@ file_size_limit = "50MiB"
 enabled = true
 # The base URL of your website. Used as an allow-list for redirects and for constructing URLs used
 # in emails.
+# redirect_uri = "http://localhost:54321/auth/v1/callback"
 site_url = "http://127.0.0.1:3000"
 # A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
-additional_redirect_urls = ["https://127.0.0.1:3000"]
+# additional_redirect_urls = ["https://127.0.0.1:3000"]
+additional_redirect_urls = ["https://localhost:3000", "http://localhost:54321"]
 # How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604,800 (1 week).
 jwt_expiry = 3600
 # If disabled, the refresh token will never expire.
@@ -81,6 +83,7 @@ refresh_token_reuse_interval = 10
 enable_signup = true
 
 [auth.email]
+# enabled = true
 # Allow/disallow new user signups via email to your project.
 enable_signup = true
 # If enabled, a user will be required to confirm any email change on both the old, and new email
@@ -88,6 +91,7 @@ enable_signup = true
 double_confirm_changes = true
 # If enabled, users need to confirm their email address before signing in.
 enable_confirmations = false
+# additional_redirect_urls = ["https://localhost:3000", "http://localhost:54321"]
 
 # Uncomment to customize email template
 # [auth.email.template.invite]
@@ -96,7 +100,7 @@ enable_confirmations = false
 
 [auth.sms]
 # Allow/disallow new user signups via SMS to your project.
-enable_signup = true
+enable_signup = false
 # If enabled, users need to confirm their phone number before signing in.
 enable_confirmations = false
 # Template for sending OTP to users

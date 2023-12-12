@@ -7,10 +7,16 @@ import Owen from "@/assets/owen.jpg";
 import Image from "next/image";
 import ThemeSwitch from "./ThemeSwitcher";
 import ProfileDropdown from "./ProfileDropdown";
+import { signOut } from "@/app/auth-server-actions";
+import { AuthError } from "@supabase/supabase-js";
+import { useToast } from "./ui/use-toast";
+import { useRouter } from "next/navigation";
 
 const ProfileBar = () => {
   const [collapse, setCollapse] = useCollapseContext();
   const [isDropDownActive, setIsDropDownActive] = useState<boolean>(false);
+  const { toast } = useToast();
+  const router = useRouter();
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -24,6 +30,24 @@ const ProfileBar = () => {
 
     return document.removeEventListener("mousedown", dropDown);
   });
+
+  const handleSignOut = async () => {
+    const response = await signOut();
+    const { error }: { error: AuthError | null } = await JSON.parse(response);
+    if (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Can't signout as of this moment.",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Success",
+        description: "You have signed out",
+      });
+      router.push("/");
+    }
+  };
 
   return (
     <div
@@ -59,7 +83,7 @@ const ProfileBar = () => {
                   <span className='font-semibold text-lg'>Owen Harvey B.</span>
                   <span>Teacher</span>
                 </li>
-                <li onClick={() => {}} className='cursor-pointer hover:bg-green-400 px-2 py-2 rounded transition-all'>
+                <li onClick={handleSignOut} className='cursor-pointer hover:bg-green-400 px-2 py-2 rounded transition-all'>
                   Sign Out
                 </li>
                 <li className='cursor-pointer hover:bg-green-400 px-2 py-2 rounded transition-all'>Settings</li>

@@ -53,7 +53,7 @@ const LoginForm = () => {
       if (result.error) {
         toast({
           title: "Error",
-          description: "Invalid email or password",
+          description: result.error.message,
           variant: "destructive",
           action: <ToastAction altText='Try again'>Try again</ToastAction>,
         });

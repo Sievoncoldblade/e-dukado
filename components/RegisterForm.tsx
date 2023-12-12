@@ -10,6 +10,13 @@ import Link from "next/link";
 
 import { signUpWithEmailAndPassword } from "@/app/auth-server-actions";
 import { AuthResponse } from "@supabase/supabase-js";
+import { Loader2 } from "lucide-react";
+import { useToast } from "./ui/use-toast";
+import { useTransition } from "react";
+import { ToastAction } from "@radix-ui/react-toast";
+import { redirect } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { useSession } from "@/lib/utils/supabase.session";
 
 const formSchema = z
   .object({
@@ -29,7 +36,11 @@ const formSchema = z
   });
 
 const RegisterForm = () => {
-  // 1. Define your form.
+  const [isPending, startTransition] = useTransition();
+  const { toast } = useToast();
+  const router = useSession();
+
+  // Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,14 +50,24 @@ const RegisterForm = () => {
     },
   });
 
-  // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    const response = await signUpWithEmailAndPassword(values);
-    const result: AuthResponse = await JSON.parse(response);
+  // Define a submit handler.
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    startTransition(async () => {
+      // Do something with the form values.
+      const response = await signUpWithEmailAndPassword(values);
+      const result: AuthResponse = await JSON.parse(response);
 
-    // ✅ This will be type-safe and validated.
-    console.log(result);
+      if (result.error) {
+        toast({
+          title: "Error",
+          description: result.error.message,
+          variant: "destructive",
+          action: <ToastAction altText='Try again'>Try again</ToastAction>,
+        });
+      } else {
+        redirect("/teacher/dashboard");
+      }
+    });
   }
 
   return (
@@ -93,6 +114,7 @@ const RegisterForm = () => {
         />
         <Button type='submit' className='mr-4 bg-green-500 text-white'>
           Submit
+          <Loader2 size={15} className={cn("ml-1 animate-spin", { hidden: !isPending })} />
         </Button>
         <Link className='text-sm text-gray-500' href='/teacher/login'>
           Already have an account?

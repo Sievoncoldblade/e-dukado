@@ -11,11 +11,13 @@ import { ToastAction } from "./ui/toast";
 
 import Link from "next/link";
 import { signInWithEmailAndPassword } from "@/app/auth-server-actions";
-import { AuthResponse, AuthTokenResponse } from "@supabase/supabase-js";
+import { AuthResponse, AuthTokenResponse, User } from "@supabase/supabase-js";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTransition } from "react";
 import { redirect } from "next/navigation";
+import { fetchUser } from "@/lib/db/fetch_user";
+import { createClientBrowser } from "@/lib/utils/supabase.browser";
 
 const emailRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-+_!@#$%^&*.,?])/;
 
@@ -58,7 +60,20 @@ const LoginForm = () => {
           action: <ToastAction altText='Try again'>Try again</ToastAction>,
         });
       } else {
-        redirect("/teacher/dashboard");
+        // fetch user from db
+        const supabase = await createClientBrowser();
+        const userId = result.data.user.id;
+        const { data, error } = await fetchUser(userId);
+
+        if (!error) {
+          const user = data[0];
+          // check if user is not yet onboarding
+          if (user.first_name == "") {
+            redirect("/teacher/onboarding");
+          } else {
+            redirect("/teacher/dashboard");
+          }
+        }
       }
     });
   }
